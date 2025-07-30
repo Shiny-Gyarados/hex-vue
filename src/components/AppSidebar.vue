@@ -9,8 +9,12 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarHeader,
+    SidebarFooter,
 } from "@/components/ui/sidebar";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
 
 const items = [
     {
@@ -29,6 +33,11 @@ const items = [
         icon: BookOpenText,
     },
 ];
+
+// 檢查路由是否為當前active路由
+const isActiveRoute = (url: string) => {
+    return route.path === url;
+};
 </script>
 
 <template>
@@ -39,8 +48,8 @@ const items = [
                 <SidebarGroupLabel>Application</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        <SidebarMenuItem v-for="item in items" :key="item.title">
-                            <SidebarMenuButton asChild>
+                        <SidebarMenuItem v-for="item of items" :key="item.title">
+                            <SidebarMenuButton asChild :isActive="isActiveRoute(item.url)">
                                 <RouterLink :to="item.url">
                                     <component :is="item.icon" />
                                     <span>{{ item.title }}</span>
