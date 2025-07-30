@@ -141,7 +141,7 @@ function saveHandler(id: number) {
             </TableRow>
         </TableHeader>
         <TableBody>
-            <TableRow v-for="item in items" :key="item.id" class="[&_td]:px-4">
+            <TableRow v-for="item of items" :key="item.id" class="[&_td]:px-4">
                 <TableCell class="font-medium min-w-[120px]">
                     <template v-if="item.isEditing">
                         <Input v-model="editingItems[item.id + '']" />
