@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, BadgeInfo } from "lucide-vue-next";
+import { Home, BadgeInfo, BookOpenText } from "lucide-vue-next";
 import {
     Sidebar,
     SidebarContent,
@@ -22,6 +22,11 @@ const items = [
         title: "About",
         url: "/about",
         icon: BadgeInfo,
+    },
+    {
+        title: "Week1",
+        url: "/week1",
+        icon: BookOpenText,
     },
 ];
 </script>
