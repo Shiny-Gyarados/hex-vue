@@ -131,7 +131,7 @@ function saveHandler(id: number) {
                 <TableHead class="font-bold text-black">描述</TableHead>
                 <TableHead class="font-bold text-black">價格</TableHead>
                 <TableHead class="text-center font-bold text-black">庫存</TableHead>
-                <TableHead class="text-center font-bold text-black min-w-[120px]">操作</TableHead>
+                <TableHead class="text-center font-bold text-black min-w-[120px]">編輯</TableHead>
             </TableRow>
         </TableHeader>
         <TableBody>
