@@ -5,16 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Minus, Plus, PenLine, X, Check } from "lucide-vue-next";
 import { Input } from "@/components/ui/input";
 
-const items = ref<
-    {
-        id: number;
-        name: string;
-        description: string;
-        price: number;
-        stock: number;
-        isEditing: boolean;
-    }[]
->([
+const defaultData = [
     {
         id: 1,
         name: "珍珠奶茶",
@@ -79,17 +70,30 @@ const items = ref<
         stock: 20,
         isEditing: false,
     },
-]);
+];
+
+const items = ref<
+    {
+        id: number;
+        name: string;
+        description: string;
+        price: number;
+        stock: number;
+        isEditing: boolean;
+    }[]
+>(localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")!) : defaultData);
 
 const editingItems = ref<Record<string, string>>({});
 
 function stockHandler(id: number, amount: number) {
-    items.value = items.value.map((item) => {
+    const newItems = items.value.map((item) => {
         if (item.id === id) {
             return { ...item, stock: item.stock + amount };
         }
         return item;
     });
+    localStorage.setItem("items", JSON.stringify(newItems));
+    items.value = newItems;
 }
 
 function editHandler(id: number) {
@@ -115,12 +119,14 @@ function cancelHandler(id: number) {
 }
 
 function saveHandler(id: number) {
-    items.value = items.value.map((item) => {
+    const newItems = items.value.map((item) => {
         if (item.id === id) {
             return { ...item, isEditing: false, name: editingItems.value[`${item.id}`] };
         }
         return item;
     });
+    localStorage.setItem("items", JSON.stringify(newItems));
+    items.value = newItems;
 }
 </script>
 <template>
