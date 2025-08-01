@@ -88,7 +88,8 @@ const editingItems = ref<Record<string, string>>({});
 function stockHandler(id: number, amount: number) {
     const newItems = items.value.map((item) => {
         if (item.id === id) {
-            return { ...item, stock: item.stock + amount };
+            const newStock = item.stock + amount;
+            return { ...item, stock: newStock < 0 ? 0 : newStock };
         }
         return item;
     });
