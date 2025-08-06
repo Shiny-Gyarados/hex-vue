@@ -3,6 +3,7 @@ import { computed, ref, onMounted } from "vue";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignUp from "@/components/SignUp.vue";
 import SignIn from "@/components/SignIn.vue";
+import TodoList from "@/components/ToDoList.vue";
 import { LoaderCircle } from "lucide-vue-next";
 import { getAuthToken } from "@/lib/cookie";
 import axios from "axios";
@@ -47,6 +48,11 @@ const checkToken = async () => {
     }
 };
 
+// 處理登出事件
+const handleSignOut = () => {
+    authToken.value = null;
+};
+
 onMounted(() => {
     checkToken();
 });
@@ -56,7 +62,12 @@ onMounted(() => {
     <div v-if="isCheckingToken" class="flex justify-center items-center h-[calc(100vh-36px)]">
         <LoaderCircle class="animate-spin mr-2" :size="36" />
     </div>
-    <Tabs v-else-if="!isLoggedIn" default-value="sign-in" class="w-[400px] shadow-lg p-4 rounded-lg flex mx-auto" :model-value="tabValue">
+    <Tabs
+        v-else-if="!isLoggedIn"
+        default-value="sign-in"
+        class="w-[400px] shadow-lg p-4 rounded-lg flex mx-auto"
+        :model-value="tabValue"
+    >
         <TabsList class="grid w-full grid-cols-2">
             <TabsTrigger value="sign-in" @click="tabValue = 'sign-in'">Sign In</TabsTrigger>
             <TabsTrigger value="sign-up" @click="tabValue = 'sign-up'">Sign Up</TabsTrigger>
@@ -68,4 +79,7 @@ onMounted(() => {
             <SignUp @sign-up-success="tabValue = 'sign-in'" />
         </TabsContent>
     </Tabs>
+    <div v-else>
+        <TodoList @sign-out-success="handleSignOut" />
+    </div>
 </template>
