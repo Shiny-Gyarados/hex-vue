@@ -44,6 +44,7 @@ jobs:
             - name: Build
               env:
                 BASE_URL: "/hex-vue/"
+                VITE_API_DOMAIN: "https://todolist-api.hexschool.io"
               run: pnpm build
             - name: Setup Pages
               uses: actions/configure-pages@v5
