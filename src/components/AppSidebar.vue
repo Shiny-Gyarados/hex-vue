@@ -32,6 +32,11 @@ const items = [
         url: "/week1",
         icon: BookOpenText,
     },
+    {
+        title: "Week2",
+        url: "/week2",
+        icon: BookOpenText,
+    },
 ];
 
 // 檢查路由是否為當前active路由
