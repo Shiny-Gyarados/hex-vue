@@ -46,9 +46,6 @@ const onSubmit = form.handleSubmit(async (values) => {
     try {
         isLoading.value = true;
         const response = await axios.post<SignInResponse>(`${API_DOMAIN}/users/sign_in`, values);
-
-        // 登入成功後將 token 和過期時間寫入 cookie
-        // 注意：response.data.exp 是秒，setAuthCookies 函數也接受秒
         if (response.data.status && response.data.token && response.data.exp) {
             setAuthCookies(response.data.token, response.data.exp);
         }
@@ -123,6 +120,6 @@ const emit = defineEmits(["sign-in-success"]);
                 </div>
             </FormItem>
         </FormField>
-        <LoadingButton type="submit" class="hover:bg-gray-600 min-w-25" :is-loading="isLoading">登入</LoadingButton>
+        <LoadingButton type="submit" class="hover:bg-gray-600 w-full" :is-loading="isLoading">登入</LoadingButton>
     </form>
 </template>

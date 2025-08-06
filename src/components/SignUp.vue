@@ -58,9 +58,6 @@ const onSubmit = form.handleSubmit(async (values) => {
             emit("sign-up-success");
         }
     } catch (error: any) {
-        // toast("註冊失敗", {
-        //     description: error?.response?.data?.message ?? error?.message ?? "未知的錯誤",
-        // });
         toast(markRaw(ToastMessageTitle), {
             componentProps: {
                 variant: "error",
@@ -140,6 +137,6 @@ const emit = defineEmits(["sign-up-success"]);
                 </div>
             </FormItem>
         </FormField>
-        <LoadingButton type="submit" class="hover:bg-gray-600 min-w-25" :is-loading="isLoading">註冊</LoadingButton>
+        <LoadingButton type="submit" class="hover:bg-gray-600 w-full" :is-loading="isLoading">註冊</LoadingButton>
     </form>
 </template>

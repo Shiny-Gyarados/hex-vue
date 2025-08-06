@@ -56,10 +56,10 @@ onMounted(() => {
     <div v-if="isCheckingToken" class="flex justify-center items-center h-[calc(100vh-36px)]">
         <LoaderCircle class="animate-spin mr-2" :size="36" />
     </div>
-    <Tabs v-else-if="!isLoggedIn" default-value="sign-in" class="w-[400px]" :model-value="tabValue">
+    <Tabs v-else-if="!isLoggedIn" default-value="sign-in" class="w-[400px] shadow-lg p-4 rounded-lg flex mx-auto" :model-value="tabValue">
         <TabsList class="grid w-full grid-cols-2">
-            <TabsTrigger value="sign-in" @click="tabValue = 'sign-in'"> Sign In </TabsTrigger>
-            <TabsTrigger value="sign-up" @click="tabValue = 'sign-up'"> Sign Up </TabsTrigger>
+            <TabsTrigger value="sign-in" @click="tabValue = 'sign-in'">Sign In</TabsTrigger>
+            <TabsTrigger value="sign-up" @click="tabValue = 'sign-up'">Sign Up</TabsTrigger>
         </TabsList>
         <TabsContent value="sign-in">
             <SignIn @sign-in-success="checkToken()" />
