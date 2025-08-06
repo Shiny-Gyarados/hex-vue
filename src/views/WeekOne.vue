@@ -88,7 +88,8 @@ const editingItems = ref<Record<string, string>>({});
 function stockHandler(id: number, amount: number) {
     const newItems = items.value.map((item) => {
         if (item.id === id) {
-            return { ...item, stock: item.stock + amount };
+            const newStock = item.stock + amount;
+            return { ...item, stock: newStock < 0 ? 0 : newStock };
         }
         return item;
     });
@@ -154,10 +155,12 @@ function saveHandler(id: number) {
                 <TableCell class="text-right">{{ item.price }}</TableCell>
                 <TableCell class="text-center">
                     <div class="flex items-center gap-2">
-                        <Button variant="outline" size="icon" @click="stockHandler(item.id, -1)">
+                        <Button variant="outline" size="icon" @click="stockHandler(item.id, -1)" :disabled="item.stock <= 0">
                             <Minus />
                         </Button>
-                        {{ item.stock }}
+                        <span class="text-black min-w-6">
+                            {{ item.stock }}
+                        </span>
                         <Button variant="outline" size="icon" @click="stockHandler(item.id, 1)">
                             <Plus />
                         </Button>
