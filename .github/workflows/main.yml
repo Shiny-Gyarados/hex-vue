@@ -43,8 +43,8 @@ jobs:
               run: pnpm install
             - name: Build
               env:
-                BASE_URL: "/hex-vue/"
-                VITE_API_DOMAIN: "https://todolist-api.hexschool.io"
+                BASE_URL: ${{ secrets.BASE_URL }}
+                VITE_API_DOMAIN: ${{ secrets.VITE_API_DOMAIN }}
               run: pnpm build
             - name: Setup Pages
               uses: actions/configure-pages@v5
