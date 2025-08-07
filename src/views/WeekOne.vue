@@ -131,7 +131,7 @@ function saveHandler(id: number) {
 }
 </script>
 <template>
-    <Table>
+    <Table class="inline-block">
         <TableHeader>
             <TableRow>
                 <TableHead class="w-[100px] font-bold text-black min-w-[120px]">品項</TableHead>
